@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "Bandwidth",
+  "version": "0.5.4",
+  "description": "A calmer way to read the web: clean text, cards, focus on what is on screen, and read-aloud.",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "http://localhost:3000/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Bandwidth"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content/extract.js",
+        "content/cards.js",
+        "content/metrics.js",
+        "content/keywords.js",
+        "content/speech.js",
+        "content/settings.js",
+        "content/api.js",
+        "content/ui.js",
+        "content/main.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "panel.css"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}
